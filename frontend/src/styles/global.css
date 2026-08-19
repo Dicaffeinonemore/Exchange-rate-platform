@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap');
+
+:root {
+  font-family: 'DM Sans', sans-serif;
+  color: #24221e;
+  background: #d8d0c3;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  --ink: #24221e;
+  --muted: #77716a;
+  --paper: #f6f0e4;
+  --paper-deep: #ebe2d2;
+  --line: rgba(61, 52, 42, .16);
+  --coral: #df755d;
+  --mustard: #d4a642;
+  --teal: #5eaaa2;
+  --blue: #7197b5;
+  --plum: #9d7184;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; }
+button, input { font: inherit; }
+a { color: inherit; text-decoration: none; }
+
+.app-background {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  padding: 56px 8vw;
+  position: relative;
+  background-color: #d8d0c3;
+  background-image: radial-gradient(rgba(54, 44, 34, .11) .7px, transparent .7px), linear-gradient(135deg, #e6ded1, #c9bdae);
+  background-size: 7px 7px, 100% 100%;
+}
+.ambient-mark { position: fixed; border: 1px solid rgba(255, 255, 255, .45); border-radius: 50%; pointer-events: none; }
+.ambient-mark-one { width: 38vw; height: 38vw; top: -19vw; left: -10vw; }
+.ambient-mark-two { width: 25vw; height: 25vw; right: -8vw; bottom: -10vw; }
+.diary-shell { width: min(1040px, 100%); min-height: 680px; position: relative; }
+.diary-paper {
+  min-height: 680px;
+  position: relative;
+  z-index: 2;
+  padding: 34px clamp(34px, 7vw, 88px) 28px;
+  background: var(--paper);
+  box-shadow: 8px 12px 0 rgba(62, 48, 35, .11), 0 28px 60px rgba(62, 48, 35, .18);
+  clip-path: polygon(0 0, 99.5% .2%, 100% 99.5%, .5% 100%, 0 99.7%);
+}
+.diary-paper::before { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .32; background-image: repeating-linear-gradient(0deg, transparent 0, transparent 31px, rgba(91, 81, 68, .08) 32px); }
+.diary-paper > * { position: relative; z-index: 1; }
+.diary-header, .diary-footer { display: flex; align-items: center; justify-content: space-between; }
+.diary-header { padding-bottom: 26px; border-bottom: 1px solid var(--line); }
+.brand { display: inline-flex; align-items: center; gap: 11px; font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; }
+.brand-stamp { display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid var(--ink); border-radius: 50%; font: 500 10px 'DM Mono', monospace; letter-spacing: -.08em; }
+.issue-label, .eyebrow, .section-kicker, .diary-footer { color: var(--muted); font: 10px 'DM Mono', monospace; letter-spacing: .12em; }
+.exchange-page { max-width: 710px; margin: 0 auto; padding: 52px 0 36px; }
+.page-intro { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; }
+.eyebrow { margin: 0 0 17px; }
+h1 { margin: 0; font: 700 clamp(38px, 5.4vw, 65px)/.98 'Playfair Display', serif; letter-spacing: -.04em; }
+h1 span, .placeholder-page h1 span { color: var(--coral); }
+.intro-copy { color: var(--muted); font-size: 14px; line-height: 1.65; margin: 22px 0 0; }
+.sun-mark { width: 88px; height: 88px; flex: 0 0 auto; display: grid; place-items: center; margin: 10px 15px 0 0; border: 1px solid var(--coral); border-radius: 50%; color: var(--coral); transform: rotate(10deg); }
+.sun-mark::before { content: ''; position: absolute; width: 106px; height: 1px; background: var(--coral); transform: rotate(45deg); }
+.sun-mark span { font: 11px 'DM Mono', monospace; transform: rotate(-10deg); }
+.rate-card { margin: 42px 0 24px; padding: 21px 26px 18px; background: #dfe8e3; border: 1px solid rgba(54, 75, 67, .17); box-shadow: 4px 5px 0 rgba(68, 88, 77, .12); }
+.rate-card-top, .rate-card-bottom, .result-row { display: flex; justify-content: space-between; align-items: center; }
+.rate-card-top { color: #55736b; font: 11px 'DM Mono', monospace; letter-spacing: .08em; }
+.rate-card-top small { margin-left: auto; font-size: 9px; }
+.flag { display: grid; place-items: center; width: 28px; height: 18px; margin-right: 10px; color: white; background: #527c8d; font: 9px 'DM Mono', monospace; }
+.live-dot { width: 5px; height: 5px; margin-left: 11px; border-radius: 50%; background: #7bb8a2; }
+.rate-value { display: flex; align-items: baseline; justify-content: space-between; padding: 23px 0 18px; }
+.rate-value span { font: 16px 'DM Mono', monospace; color: #47655d; }
+.rate-value strong { font: 500 clamp(28px, 4vw, 43px) 'DM Mono', monospace; letter-spacing: -.08em; color: #244d43; }
+.rate-card-bottom { padding-top: 13px; border-top: 1px solid rgba(54, 75, 67, .17); color: #6d877f; font-size: 11px; }
+.rate-card-bottom b { color: #378b70; font-size: 14px; }
+.calculator { padding: 25px 26px 24px; background: rgba(255, 253, 247, .72); border: 1px solid var(--line); }
+.section-kicker { margin-bottom: 10px; color: var(--coral); }
+.calculator-heading { display: flex; align-items: center; justify-content: space-between; }
+.calculator h2 { margin: 0 0 18px; font: 600 25px 'Playfair Display', serif; }
+.calculator-arrow { color: var(--coral); font-size: 27px; }
+.amount-row { display: flex; align-items: center; border-bottom: 2px solid var(--ink); }
+.amount-row input { width: 100%; padding: 8px 0; border: 0; outline: 0; color: var(--ink); background: transparent; font: 500 32px 'DM Mono', monospace; }
+.amount-row span { font: 12px 'DM Mono', monospace; }
+.conversion-line { display: flex; align-items: center; gap: 12px; margin: 17px 0; color: var(--muted); font: 10px 'DM Mono', monospace; }
+.conversion-line span { height: 1px; flex: 1; background: var(--line); }
+.conversion-line b { font-weight: 400; white-space: nowrap; }
+.result-row { margin-bottom: 18px; color: var(--muted); font-size: 12px; }
+.result-row strong { color: var(--ink); font: 500 24px 'DM Mono', monospace; }
+.primary-button { width: 100%; padding: 14px 18px; border: 0; cursor: pointer; color: white; background: var(--coral); font-weight: 700; transition: transform .2s ease, background .2s ease; }
+.primary-button:hover { background: #c85e48; transform: translateY(-2px); }
+.primary-button span { float: right; font-size: 18px; line-height: 14px; }
+.bookmark-tabs { position: absolute; z-index: 1; top: 94px; right: -76px; display: flex; flex-direction: column; gap: 8px; width: 100px; }
+.bookmark { display: flex; align-items: center; gap: 10px; height: 51px; padding: 0 15px; color: rgba(255,255,255,.82); box-shadow: 3px 3px 0 rgba(50, 39, 29, .12); font-size: 12px; transition: transform .2s ease; }
+.bookmark:hover, .bookmark.active { color: white; transform: translateX(8px); }
+.bookmark-icon { width: 17px; text-align: center; font: 16px 'DM Mono', monospace; }
+.bookmark-coral { background: var(--coral); } .bookmark-mustard { background: var(--mustard); } .bookmark-teal { background: var(--teal); } .bookmark-blue { background: var(--blue); } .bookmark-plum { background: var(--plum); }
+.diary-footer { margin-top: 22px; }
+.footer-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--coral); }
+.placeholder-page { min-height: 545px; display: flex; flex-direction: column; justify-content: center; max-width: 610px; margin: auto; }
+.placeholder-page > p:not(.eyebrow) { max-width: 340px; margin: 24px 0; color: var(--muted); line-height: 1.7; }
+.placeholder-note { display: inline-flex; align-items: center; gap: 10px; width: fit-content; padding: 13px 16px; border-left: 3px solid var(--coral); background: rgba(223,117,93,.08); color: var(--muted); font-size: 12px; }
+.placeholder-note span { color: var(--coral); }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+@media (max-width: 760px) {
+  .app-background { padding: 24px 14px 90px; place-items: start center; }
+  .diary-shell { min-height: 0; }
+  .diary-paper { min-height: calc(100vh - 114px); padding: 24px 22px 24px; }
+  .issue-label { font-size: 8px; }
+  .exchange-page { padding: 42px 0 22px; }
+  .sun-mark { width: 62px; height: 62px; margin: 4px 0 0; }
+  .sun-mark::before { width: 77px; }
+  .intro-copy { font-size: 13px; }
+  .rate-card { margin-top: 34px; padding: 18px; }
+  .rate-value strong { font-size: 27px; }
+  .calculator { padding: 22px 18px 20px; }
+  .bookmark-tabs { top: auto; right: 0; bottom: -67px; flex-direction: row; width: 100%; gap: 4px; }
+  .bookmark { flex: 1; justify-content: center; gap: 0; height: 53px; padding: 0; }
+  .bookmark span:last-child { display: none; }
+  .bookmark:hover, .bookmark.active { transform: translateY(-6px); }
+  .diary-footer { margin-top: 18px; }
+}
