@@ -1,28 +1,13 @@
 import { Outlet } from "react-router-dom";
-import BookmarkTabs from "./BookmarkTabs";
 
 function DiaryLayout() {
   return (
     <main className="app-background">
-      <div className="ambient-mark ambient-mark-one" />
-      <div className="ambient-mark ambient-mark-two" />
-      <section className="diary-shell" aria-label="Exchange Diary">
-        <div className="diary-paper">
-          <header className="diary-header">
-            <a className="brand" href="/exchange" aria-label="Exchange Diary 홈">
-              <span className="brand-stamp">ED</span>
-              <span>Exchange Diary</span>
-            </a>
-            <span className="issue-label">VOL. 01 / 2026</span>
-          </header>
-          <Outlet />
-          <footer className="diary-footer">
-            <span>keep a record of your world</span>
-            <span className="footer-dot" />
-            <span>01</span>
-          </footer>
-        </div>
-        <BookmarkTabs />
+      <div className="ambient ambient-one" /><div className="ambient ambient-two" />
+      <section className="diary-shell" aria-label="여행 예산 플래너">
+        <header className="topbar"><a className="brand" href="/travel"><span className="brand-mark">W</span><span>Wander Wallet</span></a><span className="top-note">TRAVEL BUDGET PLANNER</span></header>
+        <Outlet />
+        <footer className="footer"><span>여행의 설렘은 남기고, 예산 걱정은 덜어드려요.</span><span>KRW · USD · EUR · CNY · JPY</span></footer>
       </section>
     </main>
   );
