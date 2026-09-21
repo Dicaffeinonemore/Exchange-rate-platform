@@ -17,7 +17,7 @@ const styles = ["절약형", "일반형", "여유형"];
 const formatKrw = (value) => `${Math.max(0, Math.round(value)).toLocaleString("ko-KR")}원`;
 
 function NumberField({ label, value, onChange, suffix, min = 0 }) {
-  return <label className="field"><span>{label}</span><div className="input-wrap"><input type="number" min={min} value={value} onChange={(e) => onChange(Number(e.target.value))} /><b>{suffix}</b></div></label>;
+  return <label className="field"><span>{label}</span><div className="input-wrap"><input type="number" min={min} value={value} onChange={(e) => onChange(e.target.value === "" ? "" : Number(e.target.value))} /><b>{suffix}</b></div></label>;
 }
 
 function TravelBudget() {
@@ -56,7 +56,7 @@ function TravelBudget() {
         {flightCost > maxBudget && <p className="warning">항공권이 최대 예산보다 커요. 예산을 다시 확인해 주세요.</p>}
       </section>
     </div>
-    <section className="converter"><div><p className="eyebrow">QUICK CONVERTER</p><h2>이만큼 환전하려면?</h2><p>원하는 외화 금액을 입력하면 필요한 원화를 바로 알려드려요.</p></div><div className="converter-box"><div className="currency-label"><span>{currency.flag}</span><b>{currency.name}</b><small>{destination.currency}</small></div><div className="converter-input"><input type="number" min="0" value={foreignAmount} onChange={(e) => setForeignAmount(Number(e.target.value))} /><b>{destination.currency}</b></div><span className="conversion-arrow">→</span><div className="needed"><span>필요한 원화</span><strong>{formatKrw(requiredKrw)}</strong><small>1 {destination.currency} = {currency.rate.toLocaleString()}원 기준</small></div></div></section>
+    <section className="converter"><div><p className="eyebrow">QUICK CONVERTER</p><h2>이만큼 환전하려면?</h2><p>원하는 외화 금액을 입력하면 필요한 원화를 바로 알려드려요.</p></div><div className="converter-box"><div className="currency-label"><span>{currency.flag}</span><b>{currency.name}</b><small>{destination.currency}</small></div><div className="converter-input"><input type="number" min="0" value={foreignAmount} onChange={(e) => setForeignAmount(e.target.value === "" ? "" : Number(e.target.value))} /><b>{destination.currency}</b></div><span className="conversion-arrow">→</span><div className="needed"><span>필요한 원화</span><strong>{formatKrw(requiredKrw)}</strong><small>1 {destination.currency} = {currency.rate.toLocaleString()}원 기준</small></div></div></section>
     <section className="recommend-card">
       <div className="recommend-head"><div><p className="eyebrow">SMART BUDGET GUIDE</p><h2><span>✦</span> 맞춤 여행 예산 추천</h2></div><span className="trip-summary">{city} · {days}일 · {people}명 · {styles[travelStyle]}</span></div>
       <div className="recommend-body"><div className="breakdown">{[['🏨','숙박',recommendation.stay],['🍜','식비',recommendation.food],['🚇','교통',recommendation.transport],['🎟️','관광',recommendation.activity],['🛟','예비비',recommendation.reserve]].map(([icon,label,value]) => <div className="breakdown-row" key={label}><span>{icon} {label}</span><i style={{width: `${value / recommendation.total * 210}%`}} /><b>{formatKrw(value)}</b></div>)}</div><div className="recommend-total"><span>추천 현지 예산</span><strong>{formatKrw(recommendation.total)}</strong><small>항공권 제외 · 현재 설정 기준</small></div></div>
